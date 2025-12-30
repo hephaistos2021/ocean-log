@@ -1,0 +1,80 @@
+---
+title: "Astro로 개발 블로그 만들기"
+description: "Astro와 Tailwind CSS를 활용한 정적 사이트 생성 경험"
+date: 2024-01-20
+tags: ["astro", "tailwind", "웹개발"]
+draft: false
+---
+
+## Astro를 선택한 이유
+
+개발 블로그를 만들면서 여러 프레임워크를 고려했습니다. Next.js, Gatsby, 그리고 Astro까지.
+
+최종적으로 **Astro**를 선택한 이유는:
+
+1. **Zero JS by default**: 필요한 곳에만 JavaScript를 사용
+2. **빠른 빌드 속도**: 정적 사이트 생성이 매우 빠름
+3. **컴포넌트 유연성**: React, Vue, Svelte 등 자유롭게 사용 가능
+4. **MDX 지원**: 마크다운에 컴포넌트를 직접 사용 가능
+
+## Content Collections의 강력함
+
+Astro의 Content Collections는 블로그 콘텐츠를 관리하기에 완벽합니다.
+
+```typescript
+// src/content/config.ts
+import { defineCollection, z } from 'astro:content';
+
+const posts = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    tags: z.array(z.string()),
+    description: z.string(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { posts };
+```
+
+타입 안전성과 자동완성을 제공하면서도 사용하기 쉽습니다.
+
+## Tailwind CSS v4의 새로운 접근
+
+이 프로젝트는 Tailwind CSS v4를 사용합니다. v3와 가장 큰 차이점은 설정 방식입니다:
+
+```css
+@theme inline {
+  --color-ocean-bg: #0d1117;
+  --color-ocean-surface: #161b22;
+  --color-text-primary: #c9d1d9;
+}
+```
+
+JavaScript 설정 파일 대신 CSS 변수로 직접 테마를 정의합니다. 더 직관적이고 빠릅니다.
+
+## 터미널 스타일의 디자인
+
+이 블로그의 디자인은 "터미널 + 깊은 바다" 컨셉입니다:
+
+- **Monospace everywhere**: JetBrains Mono 폰트를 전역으로 사용
+- **Command-line metaphors**: 내비게이션이 디렉토리 탐색처럼 느껴짐
+- **Subtle animations**: 물결과 파티클 애니메이션으로 분위기 연출
+
+개발자다운 느낌을 유지하면서도 시각적으로 독특한 경험을 만들고자 했습니다.
+
+## 성능 최적화
+
+Astro는 기본적으로 성능이 뛰어나지만, 몇 가지 추가 최적화를 적용했습니다:
+
+- **View Transitions API**: 페이지 전환이 부드럽게
+- **이미지 최적화**: Astro의 Image 컴포넌트 활용
+- **폰트 서브셋팅**: 사용하는 문자만 포함
+
+## 마치며
+
+Astro는 블로그나 문서 사이트를 만들기에 정말 훌륭한 선택입니다. 빠르고, 간단하며, 개발 경험이 좋습니다.
+
+다음 글에서는 MDX로 커스텀 컴포넌트를 만드는 방법을 다뤄보겠습니다. 🚀

@@ -1,0 +1,243 @@
+---
+// About page
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TerminalWindow from '../components/TerminalWindow.astro';
+
+const skills = [
+  'TypeScript',
+  'React',
+  'Astro',
+  'Node.js',
+  'Tailwind CSS',
+  'Web Performance',
+];
+
+const interests = [
+  'Open Source',
+  'Developer Experience',
+  'UI Engineering',
+  'Technical Writing',
+];
+---
+
+<BaseLayout
+  title="About"
+  description="개발자의 이야기와 여정"
+>
+  <article class="about-page">
+    <!-- Back link -->
+    <a href="/" class="back-link">
+      ← cd ~
+    </a>
+
+    <!-- Page header -->
+    <header class="page-header">
+      <div class="comment">// whoami</div>
+      <h1 class="page-title">About</h1>
+    </header>
+
+    <!-- Bio section -->
+    <TerminalWindow title="bio.txt">
+      <div class="bio-content">
+        <p class="bio-text">
+          안녕하세요! 깊은 바다를 탐험하는 개발자입니다.
+        </p>
+        <p class="bio-text">
+          코드를 통해 문제를 해결하고, 더 나은 사용자 경험을 만드는 것에 관심이 많습니다.
+          이 블로그는 제가 배우고 경험한 것들을 기록하고 공유하는 공간입니다.
+        </p>
+        <p class="bio-text">
+          바다 깊은 곳에서 발견한 보석 같은 인사이트를 여러분과 나누고 싶습니다.
+        </p>
+      </div>
+    </TerminalWindow>
+
+    <!-- Skills section -->
+    <section class="info-section">
+      <h2 class="section-title">
+        <span class="prompt">$</span> cat skills.json
+      </h2>
+      <div class="tags-container">
+        {skills.map((skill) => (
+          <span class="tag skill-tag">{skill}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Interests section -->
+    <section class="info-section">
+      <h2 class="section-title">
+        <span class="prompt">$</span> cat interests.json
+      </h2>
+      <div class="tags-container">
+        {interests.map((interest) => (
+          <span class="tag interest-tag">{interest}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Contact section -->
+    <section class="info-section">
+      <h2 class="section-title">
+        <span class="prompt">$</span> ls -la ./contact
+      </h2>
+      <div class="contact-links">
+        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <span class="link-icon">→</span> github.com/yourusername
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <span class="link-icon">→</span> twitter.com/yourusername
+        </a>
+        <a href="mailto:your@email.com" class="contact-link">
+          <span class="link-icon">→</span> your@email.com
+        </a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .about-page {
+    padding: 8rem 0 4rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .page-header {
+    margin-bottom: 3rem;
+  }
+
+  .comment {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+
+  .bio-content {
+    padding: 1.5rem;
+  }
+
+  .bio-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-primary);
+    margin-bottom: 1.25rem;
+    font-weight: 300;
+  }
+
+  .bio-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .info-section {
+    margin-top: 3rem;
+  }
+
+  .section-title {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .prompt {
+    color: var(--color-accent-blue);
+    margin-right: 0.5rem;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .tag {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-ocean-border);
+    transition: all 0.2s ease;
+  }
+
+  .skill-tag {
+    color: var(--color-accent-blue);
+    background-color: var(--color-ocean-surface);
+  }
+
+  .skill-tag:hover {
+    border-color: var(--color-accent-blue);
+    background-color: var(--color-ocean-hover);
+  }
+
+  .interest-tag {
+    color: var(--color-accent-green);
+    background-color: var(--color-ocean-surface);
+  }
+
+  .interest-tag:hover {
+    border-color: var(--color-accent-green);
+    background-color: var(--color-ocean-hover);
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-ocean-border);
+    background-color: var(--color-ocean-surface);
+    transition: all 0.2s ease;
+  }
+
+  .contact-link:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-secondary);
+    background-color: var(--color-ocean-hover);
+  }
+
+  .link-icon {
+    color: var(--color-accent-blue);
+    margin-right: 0.75rem;
+  }
+
+  @media (max-width: 768px) {
+    .about-page {
+      padding: 6rem 0 3rem;
+    }
+
+    .page-title {
+      font-size: 2.5rem;
+    }
+
+    .bio-content {
+      padding: 1rem;
+    }
+  }
+</style>

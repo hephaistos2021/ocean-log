@@ -1,0 +1,42 @@
+---
+// Dynamic post pages
+import { getCollection } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+
+  // Filter out draft posts in production
+  const publishedPosts = import.meta.env.PROD
+    ? posts.filter(post => !post.data.draft)
+    : posts;
+
+  return publishedPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Calculate reading time
+const calculateReadingTime = (content: string) => {
+  const wordsPerMinute = 200;
+  const words = content.split(/\s+/).length;
+  const minutes = Math.ceil(words / wordsPerMinute);
+  return `${minutes} min read`;
+};
+
+const readingTime = calculateReadingTime(post.body);
+---
+
+<PostLayout
+  title={post.data.title}
+  description={post.data.description}
+  date={post.data.date}
+  tags={post.data.tags}
+  readingTime={readingTime}
+>
+  <Content />
+</PostLayout>

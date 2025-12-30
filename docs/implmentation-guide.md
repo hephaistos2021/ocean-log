@@ -181,26 +181,28 @@ Build a personal developer blog called "ocean-log" using Astro and Tailwind CSS.
 ## Phase 4: Pages
 
 ### 4.1 index.astro
-- [ ] Use BaseLayout
-- [ ] Include Hero component
-- [ ] Include PostList with recent 5 posts
-- [ ] Include Newsletter component
+- [x] Use BaseLayout
+- [x] Include Hero component
+- [x] Include PostList with recent 5 posts
+- [x] Include Newsletter component
 
 ### 4.2 posts/[...slug].astro
-- [ ] Use getStaticPaths with content collections
-- [ ] Use PostLayout
-- [ ] Render MDX content
-- [ ] Generate OG images (optional)
+- [x] Use getStaticPaths with content collections
+- [x] Use PostLayout
+- [x] Render MDX content
+- [x] Calculate reading time
+- [x] Filter draft posts in production
 
 ### 4.3 about.astro
-- [ ] Personal introduction
-- [ ] Terminal-style bio display
-- [ ] Skills/interests as tags
-- [ ] Social links
+- [x] Personal introduction
+- [x] Terminal-style bio display
+- [x] Skills/interests as tags
+- [x] Social links
 
 ### 4.4 rss.xml.js
-- [ ] Generate RSS feed from posts
-- [ ] Include title, description, items
+- [x] Generate RSS feed from posts
+- [x] Include title, description, items
+- [x] Install @astrojs/rss package
 
 ---
 
