@@ -1,0 +1,116 @@
+---
+title: 'MDX Components Demo'
+description: 'Demonstration of custom MDX components including Callout and CodeBlock'
+date: 2025-12-30
+tags: ['mdx', 'components', 'demo']
+draft: false
+---
+
+import Callout from '../../components/Callout.astro';
+import CodeBlock from '../../components/CodeBlock.astro';
+
+# MDX Components Demo
+
+This post demonstrates the custom MDX components available in ocean-log.
+
+## Callout Components
+
+The Callout component supports multiple types for different contexts.
+
+<Callout type="info" title="Information">
+This is an info callout. Use it to highlight important information that readers should know.
+</Callout>
+
+<Callout type="success" title="Success">
+Great job! Use success callouts to highlight positive outcomes or completed tasks.
+</Callout>
+
+<Callout type="warning" title="Warning">
+Caution! Warning callouts help draw attention to potential issues or things to watch out for.
+</Callout>
+
+<Callout type="error" title="Error">
+Something went wrong! Error callouts are perfect for highlighting critical issues or mistakes to avoid.
+</Callout>
+
+## Code Blocks
+
+Standard markdown code blocks work great with syntax highlighting:
+
+```typescript
+// TypeScript example with syntax highlighting
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+const createUser = (data: Partial<User>): User => {
+  return {
+    id: crypto.randomUUID(),
+    name: data.name ?? 'Anonymous',
+    email: data.email ?? 'noreply@ocean-log.dev',
+  };
+};
+```
+
+You can also use the CodeBlock component for enhanced styling:
+
+<CodeBlock title="config.ts" language="typescript">
+```typescript
+export const config = {
+  siteName: 'ocean-log',
+  siteUrl: 'https://ocean-log.dev',
+  author: 'Developer',
+};
+```
+</CodeBlock>
+
+## Typography Examples
+
+### Headings Hierarchy
+
+#### This is an H4 heading
+##### This is an H5 heading
+###### This is an H6 heading
+
+### Text Formatting
+
+This is **bold text** and this is *italic text*.
+
+### Lists
+
+Unordered list:
+- First item
+- Second item
+  - Nested item 1
+  - Nested item 2
+- Third item
+
+Ordered list:
+1. First step
+2. Second step
+3. Third step
+
+### Links and Quotes
+
+Check out the [Astro documentation](https://docs.astro.build) for more information.
+
+> "The ocean is everything. It covers 70% of the earth's surface."
+> — Jules Verne
+
+### Code and Tables
+
+Inline code: `const greeting = 'Hello, Ocean!'`
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| MDX Support | ✓ | Fully implemented |
+| Syntax Highlighting | ✓ | Using Shiki |
+| Custom Components | ✓ | Callout, CodeBlock |
+
+---
+
+## Conclusion
+
+These components enhance the blog's content capabilities while maintaining the ocean-terminal aesthetic. Happy writing! 🌊

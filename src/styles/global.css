@@ -141,3 +141,161 @@
     font-family: 'JetBrains Mono', monospace;
   }
 }
+
+/* MDX Prose Styling - Terminal-inspired typography */
+@layer components {
+  .prose {
+    @apply max-w-none text-text-primary;
+    font-family: 'JetBrains Mono', monospace;
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+      @apply font-bold text-text-primary mt-8 mb-4;
+      line-height: 1.3;
+    }
+
+    h1 {
+      @apply text-3xl md:text-4xl text-accent-blue border-b border-ocean-border pb-2;
+    }
+
+    h2 {
+      @apply text-2xl md:text-3xl text-accent-blue-hover;
+    }
+
+    h3 {
+      @apply text-xl md:text-2xl text-accent-green;
+    }
+
+    h4 {
+      @apply text-lg md:text-xl text-accent-green-alt;
+    }
+
+    h5, h6 {
+      @apply text-base md:text-lg text-text-secondary;
+    }
+
+    /* Paragraphs and text */
+    p {
+      @apply my-4 leading-relaxed text-text-primary/90;
+    }
+
+    /* Links */
+    a {
+      @apply text-accent-blue underline decoration-accent-blue/30 hover:decoration-accent-blue transition-colors;
+      text-underline-offset: 2px;
+    }
+
+    a:hover {
+      @apply text-accent-blue-hover;
+    }
+
+    /* Strong and emphasis */
+    strong {
+      @apply text-accent-green font-bold;
+    }
+
+    em {
+      @apply text-accent-blue italic;
+    }
+
+    /* Lists */
+    ul, ol {
+      @apply my-4 pl-6 space-y-2;
+    }
+
+    ul {
+      @apply list-disc marker:text-accent-green;
+    }
+
+    ol {
+      @apply list-decimal marker:text-accent-blue;
+    }
+
+    li {
+      @apply text-text-primary/90 leading-relaxed;
+    }
+
+    li::marker {
+      @apply font-bold;
+    }
+
+    /* Nested lists */
+    li > ul,
+    li > ol {
+      @apply my-2;
+    }
+
+    /* Inline code */
+    :not(pre) > code {
+      @apply bg-ocean-surface text-accent-green px-1.5 py-0.5 rounded border border-ocean-border text-sm;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Code blocks */
+    pre {
+      @apply my-6 rounded-lg border border-ocean-border bg-ocean-surface/50 overflow-x-auto;
+      padding: 1.5rem;
+    }
+
+    pre > code {
+      @apply bg-transparent border-0 p-0 text-sm;
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.7;
+    }
+
+    /* Blockquotes */
+    blockquote {
+      @apply my-6 border-l-4 border-accent-blue bg-ocean-surface/30 pl-4 pr-4 py-3 italic;
+    }
+
+    blockquote p {
+      @apply text-text-secondary my-2;
+    }
+
+    blockquote p:first-child::before {
+      content: '"';
+      @apply text-accent-blue text-xl mr-1;
+    }
+
+    blockquote p:last-child::after {
+      content: '"';
+      @apply text-accent-blue text-xl ml-1;
+    }
+
+    /* Horizontal rules */
+    hr {
+      @apply my-8 border-ocean-border;
+    }
+
+    /* Tables */
+    table {
+      @apply w-full my-6 border-collapse;
+    }
+
+    thead {
+      @apply bg-ocean-surface border-b-2 border-accent-blue;
+    }
+
+    th {
+      @apply px-4 py-2 text-left text-accent-blue font-bold;
+    }
+
+    td {
+      @apply px-4 py-2 border-b border-ocean-border;
+    }
+
+    tbody tr:hover {
+      @apply bg-ocean-hover;
+    }
+
+    /* Images */
+    img {
+      @apply rounded-lg border border-ocean-border my-6;
+    }
+
+    /* Task lists */
+    input[type="checkbox"] {
+      @apply mr-2 accent-accent-green;
+    }
+  }
+}
