@@ -2,19 +2,19 @@
 // Navigation component with scroll detection
 ---
 
-<nav id="main-nav" class="nav">
+<nav id="main-nav" class="nav" aria-label="메인 네비게이션">
   <div class="nav-container">
-    <a href="/" class="nav-logo">~/ocean-log</a>
+    <a href="/" class="nav-logo" aria-label="홈으로 이동">~/ocean-log</a>
 
     <div class="nav-links">
-      <a href="/posts" class="nav-link">
-        posts <kbd>p</kbd>
+      <a href="/posts" class="nav-link" aria-label="포스트 페이지 (단축키: P)">
+        posts <kbd aria-hidden="true">p</kbd>
       </a>
-      <a href="/about" class="nav-link">
-        about <kbd>a</kbd>
+      <a href="/about" class="nav-link" aria-label="소개 페이지 (단축키: A)">
+        about <kbd aria-hidden="true">a</kbd>
       </a>
-      <a href="/rss.xml" class="nav-link">
-        rss <kbd>r</kbd>
+      <a href="/rss.xml" class="nav-link" aria-label="RSS 피드 (단축키: R)">
+        rss <kbd aria-hidden="true">r</kbd>
       </a>
     </div>
   </div>
@@ -24,6 +24,7 @@
   const nav = document.getElementById('main-nav');
   let lastScroll = 0;
 
+  // Scroll detection
   window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
 
@@ -34,6 +35,33 @@
     }
 
     lastScroll = currentScroll;
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    // Only trigger if not in an input/textarea
+    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+      return;
+    }
+
+    switch (e.key.toLowerCase()) {
+      case 'p':
+        e.preventDefault();
+        window.location.href = '/posts';
+        break;
+      case 'a':
+        e.preventDefault();
+        window.location.href = '/about';
+        break;
+      case 'r':
+        e.preventDefault();
+        window.location.href = '/rss.xml';
+        break;
+      case 'h':
+        e.preventDefault();
+        window.location.href = '/';
+        break;
+    }
   });
 </script>
 

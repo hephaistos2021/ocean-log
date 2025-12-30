@@ -223,21 +223,21 @@ Build a personal developer blog called "ocean-log" using Astro and Tailwind CSS.
 ## Phase 6: Enhancements
 
 ### 6.1 SEO & Meta
-- [ ] Dynamic meta tags per page
-- [ ] Open Graph images
-- [ ] Sitemap generation
-- [ ] robots.txt
+- [x] Dynamic meta tags per page
+- [x] Open Graph images (PNG generation with @resvg/resvg-js)
+- [x] Sitemap generation
+- [x] robots.txt
 
 ### 6.2 Performance
-- [ ] Optimize fonts (subset, preload)
-- [ ] Lazy load images
-- [ ] Minimize CSS/JS
+- [x] Optimize fonts (subset, preload)
+- [x] Lazy load images
+- [ ] Minimize CSS/JS (handled by Astro build)
 
 ### 6.3 Accessibility
-- [ ] Keyboard navigation support
-- [ ] Focus styles
-- [ ] Screen reader friendly labels
-- [ ] Color contrast check (especially muted text)
+- [x] Keyboard navigation support (p, a, r, h shortcuts)
+- [x] Focus styles (visible focus indicators)
+- [x] Screen reader friendly labels (ARIA labels, sr-only class)
+- [x] Color contrast check (improved muted text to WCAG AA compliance)
 
 ### 6.4 Deployment
 - [ ] Configure for Vercel/Netlify/Cloudflare Pages

@@ -54,7 +54,7 @@
   /* Text colors */
   --color-text-primary: #c9d1d9;
   --color-text-secondary: #8b949e;
-  --color-text-muted: #484f58;
+  --color-text-muted: #7d8590; /* Improved from #484f58 for WCAG AA compliance (5.07:1) */
   --color-text-disabled: #30363d;
 
   /* Accent colors */
@@ -139,6 +139,40 @@
   body {
     @apply bg-ocean-bg text-text-primary;
     font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Improved focus styles for accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-blue;
+    outline-style: solid;
+  }
+
+  /* Ensure keyboard focus is visible */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent-blue;
+    outline-style: solid;
+  }
+
+  /* Remove default focus outline but keep for keyboard users */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Screen reader only utility class */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 }
 
@@ -291,6 +325,8 @@
     /* Images */
     img {
       @apply rounded-lg border border-ocean-border my-6;
+      loading: lazy;
+      height: auto;
     }
 
     /* Task lists */

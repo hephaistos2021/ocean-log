@@ -3,25 +3,25 @@
 import BlinkingCursor from './BlinkingCursor.astro';
 ---
 
-<section class="hero">
+<section class="hero" aria-label="메인 히어로 섹션">
   <div class="hero-content">
-    <p class="comment fade-in-up" style="animation-delay: 0.1s;">
+    <p class="comment fade-in-up" style="animation-delay: 0.1s;" aria-hidden="true">
       // a developer's journey
     </p>
 
     <h1 class="hero-title fade-in-up" style="animation-delay: 0.2s;">
-      <span class="ocean">ocean</span><span class="dash">-</span><span class="log">log</span><BlinkingCursor />
+      <span class="ocean">ocean</span><span class="dash">-</span><span class="log">log</span><span aria-hidden="true"><BlinkingCursor /></span>
     </h1>
 
     <p class="subtitle fade-in-up" style="animation-delay: 0.3s;">
       개발자의 깊은 바다 항해 일지
     </p>
 
-    <a href="/posts" class="cta-button fade-in-up" style="animation-delay: 0.4s;">
+    <a href="/posts" class="cta-button fade-in-up" style="animation-delay: 0.4s;" aria-label="블로그 포스트 보기">
       $ cd ./posts
     </a>
 
-    <div class="scroll-indicator fade-in-up" style="animation-delay: 0.5s;">
+    <div class="scroll-indicator fade-in-up" style="animation-delay: 0.5s;" aria-hidden="true">
       ↓ scroll
     </div>
   </div>

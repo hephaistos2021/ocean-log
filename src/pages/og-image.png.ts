@@ -1,6 +1,7 @@
 // Dynamic OG Image Generation
-// This endpoint generates an SVG-based Open Graph image
+// This endpoint generates a PNG Open Graph image
 import type { APIRoute } from 'astro';
+import { Resvg } from '@resvg/resvg-js';
 
 export const GET: APIRoute = async () => {
   const svg = `
@@ -42,42 +43,47 @@ export const GET: APIRoute = async () => {
       <circle cx="160" cy="140" r="6" fill="#7ee787"/>
 
       <!-- Main content -->
-      <text x="600" y="280" font-family="'JetBrains Mono', monospace"
+      <text x="600" y="280" font-family="monospace"
             font-size="72" font-weight="bold" fill="#c9d1d9" text-anchor="middle">
         ocean-log
       </text>
 
-      <text x="600" y="340" font-family="'JetBrains Mono', monospace"
+      <text x="600" y="340" font-family="monospace"
             font-size="28" fill="#8b949e" text-anchor="middle">
         깊은 바다처럼, 깊은 생각을
       </text>
 
       <!-- Command prompt -->
-      <text x="140" y="440" font-family="'JetBrains Mono', monospace"
+      <text x="140" y="440" font-family="monospace"
             font-size="20" fill="#7ee787">
         <tspan fill="#58a6ff">$</tspan> cat ~/thoughts
       </text>
 
-      <rect x="135" y="455" width="15" height="3" fill="#7ee787">
-        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-      </rect>
+      <rect x="135" y="455" width="15" height="3" fill="#7ee787"/>
 
       <!-- Footer -->
-      <text x="600" y="500" font-family="'JetBrains Mono', monospace"
+      <text x="600" y="500" font-family="monospace"
             font-size="18" fill="#484f58" text-anchor="middle">
         Developer Blog • TypeScript • Astro • Web Performance
       </text>
     </svg>
   `;
 
-  // Convert SVG to PNG using sharp if available, otherwise return SVG
-  // For now, we'll return the SVG with PNG content type header
-  // In production, you'd want to use a library like @resvg/resvg-js to convert to actual PNG
+  // Convert SVG to PNG using resvg
+  const resvg = new Resvg(svg, {
+    fitTo: {
+      mode: 'width',
+      value: 1200,
+    },
+  });
 
-  return new Response(svg, {
+  const pngData = resvg.render();
+  const pngBuffer = pngData.asPng();
+
+  return new Response(pngBuffer, {
     status: 200,
     headers: {
-      'Content-Type': 'image/svg+xml',
+      'Content-Type': 'image/png',
       'Cache-Control': 'public, max-age=31536000, immutable',
     },
   });
