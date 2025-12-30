@@ -83,77 +83,77 @@ Build a personal developer blog called "ocean-log" using Astro and Tailwind CSS.
 ## Phase 2: Core Components
 
 ### 2.1 WaveBackground.astro
-- [ ] Create SVG wave animation component
-- [ ] Two wave paths with different durations (20s, 25s)
-- [ ] Use linearGradient with blue (#58a6ff) and green (#39d353)
-- [ ] Set opacity to 0.06 for subtle effect
-- [ ] Position: fixed, full viewport, pointer-events-none, z-0
+- [x] Create SVG wave animation component
+- [x] Two wave paths with different durations (20s, 25s)
+- [x] Use linearGradient with blue (#58a6ff) and green (#39d353)
+- [x] Set opacity to 0.06 for subtle effect
+- [x] Position: fixed, full viewport, pointer-events-none, z-0
 
 ### 2.2 FloatingParticles.astro
-- [ ] Generate 12-15 small circles (1-3px)
-- [ ] Alternate colors between accent-blue and accent-green
-- [ ] Random positions using inline styles
-- [ ] Apply float animation with random delays (18-30s duration)
-- [ ] Opacity range: 0.1 - 0.4
+- [x] Generate 12-15 small circles (1-3px)
+- [x] Alternate colors between accent-blue and accent-green
+- [x] Random positions using inline styles
+- [x] Apply float animation with random delays (18-30s duration)
+- [x] Opacity range: 0.1 - 0.4
 
 ### 2.3 BlinkingCursor.astro
-- [ ] Accept `visible` prop or use client-side JS
-- [ ] Display underscore `_` character
-- [ ] Toggle opacity every 530ms
-- [ ] Color: accent-blue
+- [x] Accept `visible` prop or use client-side JS
+- [x] Display underscore `_` character
+- [x] Toggle opacity every 530ms
+- [x] Color: accent-blue
 
 ### 2.4 Navigation.astro
-- [ ] Left side: `~/ocean-log` path-style logo
-- [ ] Right side: links with keyboard hints
+- [x] Left side: `~/ocean-log` path-style logo
+- [x] Right side: links with keyboard hints
   - posts [p]
   - about [a]
   - rss [r]
-- [ ] Scroll detection: add backdrop blur + border when scrolled
-- [ ] Use `<script>` tag for scroll listener (vanilla JS)
-- [ ] Transitions: all 0.4s ease
+- [x] Scroll detection: add backdrop blur + border when scrolled
+- [x] Use `<script>` tag for scroll listener (vanilla JS)
+- [x] Transitions: all 0.4s ease
 
 ### 2.5 TerminalWindow.astro
-- [ ] Props: `title` (string)
-- [ ] Header with traffic light buttons (red/yellow/green circles)
-- [ ] Slot for content
-- [ ] Border radius: 6px
-- [ ] Background: ocean-surface
-- [ ] Border: ocean-border
+- [x] Props: `title` (string)
+- [x] Header with traffic light buttons (red/yellow/green circles)
+- [x] Slot for content
+- [x] Border radius: 6px
+- [x] Background: ocean-surface
+- [x] Border: ocean-border
 
 ### 2.6 Hero.astro
-- [ ] Comment line: `// a developer's journey`
-- [ ] Title: `ocean-log` with blinking cursor
-- [ ] "ocean" in accent-blue, "-" in muted, "log" in primary
-- [ ] Subtitle in Korean (muted color)
-- [ ] CTA button: `$ cd ./posts` style
-- [ ] Scroll indicator at bottom: `↓ scroll`
-- [ ] FadeInUp animations with staggered delays
+- [x] Comment line: `// a developer's journey`
+- [x] Title: `ocean-log` with blinking cursor
+- [x] "ocean" in accent-blue, "-" in muted, "log" in primary
+- [x] Subtitle in Korean (muted color)
+- [x] CTA button: `$ cd ./posts` style
+- [x] Scroll indicator at bottom: `↓ scroll`
+- [x] FadeInUp animations with staggered delays
 
 ### 2.7 PostList.astro
-- [ ] Section header: `→ ls -la ./posts`
-- [ ] Wrap posts in TerminalWindow component
-- [ ] Each post row displays:
+- [x] Section header: `→ ls -la ./posts`
+- [x] Wrap posts in TerminalWindow component
+- [x] Each post row displays:
   - Index (01, 02...) in blue
   - Date (YYYY-MM-DD) in muted
   - Title in primary
   - Tag (#tag) in green
-- [ ] Hover effect: background change to ocean-hover
-- [ ] "git log --all" link at bottom
+- [x] Hover effect: background change to ocean-hover
+- [x] "git log --all" link at bottom
 
 ### 2.8 Newsletter.astro
-- [ ] JSDoc style header comment
-- [ ] Title: 깊은 바다의 소식
-- [ ] Description text
-- [ ] Input with arrow prompt (→)
-- [ ] Subscribe button (green)
-- [ ] Success state with checkmark
-- [ ] Consider: Astro Action or external service integration
+- [x] JSDoc style header comment
+- [x] Title: 깊은 바다의 소식
+- [x] Description text
+- [x] Input with arrow prompt (→)
+- [x] Subscribe button (green)
+- [x] Success state with checkmark
+- [x] Consider: Astro Action or external service integration
 
 ### 2.9 Footer.astro
-- [ ] Left: `~/ocean-log • v1.0.0`
-- [ ] Right: `@github`, `@twitter` links
-- [ ] Top border: ocean-border-subtle
-- [ ] Minimal padding
+- [x] Left: `~/ocean-log • v1.0.0`
+- [x] Right: `@github`, `@twitter` links
+- [x] Top border: ocean-border-subtle
+- [x] Minimal padding
 
 ---
 

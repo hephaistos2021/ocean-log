@@ -1,0 +1,71 @@
+---
+// Terminal window component with traffic light buttons
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="terminal-window">
+  <div class="terminal-header">
+    <div class="traffic-lights">
+      <span class="traffic-light close"></span>
+      <span class="traffic-light minimize"></span>
+      <span class="traffic-light maximize"></span>
+    </div>
+    {title && <span class="terminal-title">{title}</span>}
+  </div>
+  <div class="terminal-body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .terminal-window {
+    background-color: var(--color-ocean-surface);
+    border: 1px solid var(--color-ocean-border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-ocean-border);
+  }
+
+  .traffic-lights {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .traffic-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .traffic-light.close {
+    background-color: #f85149;
+  }
+
+  .traffic-light.minimize {
+    background-color: #e3b341;
+  }
+
+  .traffic-light.maximize {
+    background-color: #56d364;
+  }
+
+  .terminal-title {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .terminal-body {
+    padding: 0.5rem 0;
+  }
+</style>
