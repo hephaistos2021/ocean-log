@@ -160,21 +160,21 @@ Build a personal developer blog called "ocean-log" using Astro and Tailwind CSS.
 ## Phase 3: Layouts
 
 ### 3.1 BaseLayout.astro
-- [ ] HTML boilerplate with lang, meta tags
-- [ ] Import global CSS
-- [ ] Include WaveBackground and FloatingParticles
-- [ ] Include Navigation
-- [ ] Slot for page content
-- [ ] Include Footer
-- [ ] Add View Transitions: `<ViewTransitions />`
+- [x] HTML boilerplate with lang, meta tags
+- [x] Import global CSS
+- [x] Include WaveBackground and FloatingParticles
+- [x] Include Navigation
+- [x] Slot for page content
+- [x] Include Footer
+- [x] Add View Transitions: `<ViewTransitions />`
 
 ### 3.2 PostLayout.astro
-- [ ] Extends BaseLayout
-- [ ] Props: title, date, tags, readingTime
-- [ ] Post header with meta info
-- [ ] Prose styling for MDX content
-- [ ] Back link: `← cd ..`
-- [ ] Related posts or next/prev navigation (optional)
+- [x] Extends BaseLayout
+- [x] Props: title, date, tags, readingTime
+- [x] Post header with meta info
+- [x] Prose styling for MDX content
+- [x] Back link: `← cd ..`
+- [x] Related posts or next/prev navigation (optional)
 
 ---
 
