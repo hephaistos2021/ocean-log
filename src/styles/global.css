@@ -1,0 +1,143 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource/jetbrains-mono";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Ocean theme colors */
+  --color-ocean-bg: #0d1117;
+  --color-ocean-surface: #161b22;
+  --color-ocean-hover: #1f2428;
+  --color-ocean-border: #30363d;
+  --color-ocean-border-subtle: #21262d;
+
+  /* Text colors */
+  --color-text-primary: #c9d1d9;
+  --color-text-secondary: #8b949e;
+  --color-text-muted: #484f58;
+  --color-text-disabled: #30363d;
+
+  /* Accent colors */
+  --color-accent-blue: #58a6ff;
+  --color-accent-blue-hover: #79c0ff;
+  --color-accent-green: #7ee787;
+  --color-accent-green-alt: #56d364;
+  --color-accent-green-dark: #238636;
+  --color-accent-red: #f85149;
+  --color-accent-yellow: #e3b341;
+
+  /* Font families */
+  --font-family-mono: 'JetBrains Mono', monospace;
+}
+
+:root {
+  /* Shadcn UI variables - reference ocean theme colors */
+  --radius: 0.375rem;
+
+  /* Map shadcn variables to ocean theme */
+  --background: var(--color-ocean-bg);
+  --foreground: var(--color-text-primary);
+  --card: var(--color-ocean-surface);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-ocean-surface);
+  --popover-foreground: var(--color-text-primary);
+  --primary: var(--color-accent-blue);
+  --primary-foreground: var(--color-ocean-bg);
+  --secondary: var(--color-ocean-border-subtle);
+  --secondary-foreground: var(--color-text-primary);
+  --muted: var(--color-ocean-hover);
+  --muted-foreground: var(--color-text-secondary);
+  --accent: var(--color-accent-green-dark);
+  --accent-foreground: #ffffff;
+  --destructive: var(--color-accent-red);
+  --destructive-foreground: #ffffff;
+  --border: var(--color-ocean-border);
+  --input: var(--color-ocean-border);
+  --ring: var(--color-accent-blue);
+  --chart-1: var(--color-accent-blue);
+  --chart-2: var(--color-accent-green);
+  --chart-3: var(--color-accent-yellow);
+  --chart-4: var(--color-accent-blue-hover);
+  --chart-5: var(--color-accent-green-alt);
+}
+
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-ocean-bg text-text-primary;
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
