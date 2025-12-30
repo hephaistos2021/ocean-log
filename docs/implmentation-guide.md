@@ -209,14 +209,14 @@ Build a personal developer blog called "ocean-log" using Astro and Tailwind CSS.
 ## Phase 5: Content Setup
 
 ### 5.1 Content Collections
-- [ ] Define posts collection in `src/content/config.ts`
-- [ ] Schema: title, date, tags, description, draft
-- [ ] Create sample posts in MDX format
+- [x] Define posts collection in `src/content/config.ts`
+- [x] Schema: title, date, tags, description, draft
+- [x] Create sample posts in MDX format
 
 ### 5.2 MDX Styling
-- [ ] Configure prose styles for post content
-- [ ] Code block styling (match terminal theme)
-- [ ] Custom components: Callout, CodeBlock, etc.
+- [x] Configure prose styles for post content
+- [x] Code block styling (match terminal theme)
+- [x] Custom components: Callout, CodeBlock, etc.
 
 ---
 
