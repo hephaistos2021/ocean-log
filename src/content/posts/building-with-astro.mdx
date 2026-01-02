@@ -1,8 +1,8 @@
 ---
-title: "Astro로 개발 블로그 만들기"
-description: "Astro와 Tailwind CSS를 활용한 정적 사이트 생성 경험"
+title: 'Astro로 개발 블로그 만들기'
+description: 'Astro와 Tailwind CSS를 활용한 정적 사이트 생성 경험'
 date: 2024-01-20
-tags: ["astro", "tailwind", "웹개발"]
+tags: ['astro', 'tailwind', '웹개발']
 draft: false
 ---
 
@@ -23,20 +23,20 @@ Astro의 Content Collections는 블로그 콘텐츠를 관리하기에 완벽합
 
 ```typescript
 // src/content/config.ts
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from 'astro:content'
 
 const posts = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    date: z.date(),
-    tags: z.array(z.string()),
-    description: z.string(),
-    draft: z.boolean().default(false),
-  }),
-});
+    type: 'content',
+    schema: z.object({
+        title: z.string(),
+        date: z.date(),
+        tags: z.array(z.string()),
+        description: z.string(),
+        draft: z.boolean().default(false),
+    }),
+})
 
-export const collections = { posts };
+export const collections = { posts }
 ```
 
 타입 안전성과 자동완성을 제공하면서도 사용하기 쉽습니다.
@@ -47,9 +47,9 @@ export const collections = { posts };
 
 ```css
 @theme inline {
-  --color-ocean-bg: #0d1117;
-  --color-ocean-surface: #161b22;
-  --color-text-primary: #c9d1d9;
+    --color-ocean-bg: #0d1117;
+    --color-ocean-surface: #161b22;
+    --color-text-primary: #c9d1d9;
 }
 ```
 

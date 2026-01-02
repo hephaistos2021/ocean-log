@@ -1,152 +1,162 @@
 ---
 // Post list component with terminal style
-import { getCollection } from 'astro:content';
-import TerminalWindow from './TerminalWindow.astro';
+import { getCollection } from 'astro:content'
+import TerminalWindow from './TerminalWindow.astro'
 
 interface Props {
-  limit?: number;
+    limit?: number
 }
 
-const { limit } = Astro.props;
+const { limit } = Astro.props
 
 // Get all posts, sorted by date (newest first)
-const allPosts = await getCollection('posts');
+const allPosts = await getCollection('posts')
 const sortedPosts = allPosts
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
-const posts = limit ? sortedPosts.slice(0, limit) : sortedPosts;
+const posts = limit ? sortedPosts.slice(0, limit) : sortedPosts
 
 // Format date as YYYY-MM-DD
 const formatDate = (date: Date) => {
-  return date.toISOString().split('T')[0];
-};
+    return date.toISOString().split('T')[0]
+}
 ---
 
 <section class="post-list-section">
-  <h2 class="section-header">→ ls -la ./posts</h2>
+    <h2 class="section-header">→ ls -la ./posts</h2>
 
-  <TerminalWindow>
-    <div class="post-list">
-      {posts.length === 0 ? (
-        <div class="empty-state">
-          <p class="empty-message">// no posts yet</p>
+    <TerminalWindow>
+        <div class="post-list">
+            {
+                posts.length === 0 ? (
+                    <div class="empty-state">
+                        <p class="empty-message">// no posts yet</p>
+                    </div>
+                ) : (
+                    posts.map((post, index) => (
+                        <a href={`/posts/${post.slug}`} class="post-row">
+                            <span class="post-number">
+                                {String(index + 1).padStart(2, '0')}
+                            </span>
+                            <span class="post-date">
+                                {formatDate(post.data.date)}
+                            </span>
+                            <span class="post-title">{post.data.title}</span>
+                            {post.data.tags && post.data.tags.length > 0 && (
+                                <span class="post-tag">
+                                    #{post.data.tags[0]}
+                                </span>
+                            )}
+                        </a>
+                    ))
+                )
+            }
         </div>
-      ) : (
-        posts.map((post, index) => (
-          <a href={`/posts/${post.slug}`} class="post-row">
-            <span class="post-number">{String(index + 1).padStart(2, '0')}</span>
-            <span class="post-date">{formatDate(post.data.date)}</span>
-            <span class="post-title">{post.data.title}</span>
-            {post.data.tags && post.data.tags.length > 0 && (
-              <span class="post-tag">#{post.data.tags[0]}</span>
-            )}
-          </a>
-        ))
-      )}
-    </div>
-  </TerminalWindow>
+    </TerminalWindow>
 
-  {limit && sortedPosts.length > limit && (
-    <a href="/posts" class="view-all">
-      git log --all →
-    </a>
-  )}
+    {
+        limit && sortedPosts.length > limit && (
+            <a href="/posts" class="view-all">
+                git log --all →
+            </a>
+        )
+    }
 </section>
 
 <style>
-  .post-list-section {
-    padding: 4rem 0;
-    position: relative;
-    z-index: 10;
-  }
+    .post-list-section {
+        padding: 4rem 0;
+        position: relative;
+        z-index: 10;
+    }
 
-  .section-header {
-    font-size: 1.125rem;
-    color: var(--color-text-primary);
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-  }
+    .section-header {
+        font-size: 1.125rem;
+        color: var(--color-text-primary);
+        font-weight: 400;
+        margin-bottom: 1.5rem;
+    }
 
-  .post-list {
-    display: flex;
-    flex-direction: column;
-  }
+    .post-list {
+        display: flex;
+        flex-direction: column;
+    }
 
-  .empty-state {
-    padding: 2rem 1rem;
-    text-align: center;
-  }
+    .empty-state {
+        padding: 2rem 1rem;
+        text-align: center;
+    }
 
-  .empty-message {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-  }
+    .empty-message {
+        font-size: 0.875rem;
+        color: var(--color-text-muted);
+    }
 
-  .post-row {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
-    transition: background-color 0.15s ease;
-    gap: 1rem;
-  }
-
-  .post-row:hover {
-    background-color: var(--color-ocean-hover);
-  }
-
-  .post-number {
-    font-size: 0.75rem;
-    color: var(--color-accent-blue);
-    min-width: 24px;
-  }
-
-  .post-date {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    min-width: 100px;
-  }
-
-  .post-title {
-    font-size: 0.875rem;
-    color: var(--color-text-primary);
-    flex: 1;
-  }
-
-  .post-tag {
-    font-size: 0.6875rem;
-    color: var(--color-accent-green);
-  }
-
-  .view-all {
-    display: inline-block;
-    margin-top: 1.5rem;
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-
-  .view-all:hover {
-    color: var(--color-text-primary);
-  }
-
-  @media (max-width: 768px) {
     .post-row {
-      flex-wrap: wrap;
-      gap: 0.5rem;
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        text-decoration: none;
+        transition: background-color 0.15s ease;
+        gap: 1rem;
+    }
+
+    .post-row:hover {
+        background-color: var(--color-ocean-hover);
+    }
+
+    .post-number {
+        font-size: 0.75rem;
+        color: var(--color-accent-blue);
+        min-width: 24px;
     }
 
     .post-date {
-      min-width: auto;
-      order: 3;
-      width: 100%;
-      margin-left: 40px;
+        font-size: 0.75rem;
+        color: var(--color-text-muted);
+        min-width: 100px;
+    }
+
+    .post-title {
+        font-size: 0.875rem;
+        color: var(--color-text-primary);
+        flex: 1;
     }
 
     .post-tag {
-      order: 2;
+        font-size: 0.6875rem;
+        color: var(--color-accent-green);
     }
-  }
+
+    .view-all {
+        display: inline-block;
+        margin-top: 1.5rem;
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .view-all:hover {
+        color: var(--color-text-primary);
+    }
+
+    @media (max-width: 768px) {
+        .post-row {
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .post-date {
+            min-width: auto;
+            order: 3;
+            width: 100%;
+            margin-left: 40px;
+        }
+
+        .post-tag {
+            order: 2;
+        }
+    }
 </style>

@@ -3,189 +3,203 @@
 ---
 
 <section class="newsletter" aria-labelledby="newsletter-title">
-  <div class="newsletter-content">
-    <div class="jsdoc-comment" aria-hidden="true">
-      /**<br/>
-      &nbsp;* @subscribe newsletter<br/>
-      &nbsp;*/
+    <div class="newsletter-content">
+        <div class="jsdoc-comment" aria-hidden="true">
+            /**<br />
+            &nbsp;* @subscribe newsletter<br />
+            &nbsp;*/
+        </div>
+
+        <h2 id="newsletter-title" class="newsletter-title">깊은 바다의 소식</h2>
+        <p class="newsletter-description">
+            새로운 글과 인사이트를 이메일로 받아보세요. 스팸은 없습니다.
+        </p>
+
+        <form
+            id="newsletter-form"
+            class="newsletter-form"
+            aria-label="뉴스레터 구독 양식"
+        >
+            <div class="input-wrapper">
+                <span class="input-prompt" aria-hidden="true">→</span>
+                <label htmlFor="email" class="sr-only">이메일 주소</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="your@email.com"
+                    required
+                    class="email-input"
+                    aria-required="true"
+                    aria-describedby="newsletter-description"
+                />
+            </div>
+            <button
+                type="submit"
+                class="subscribe-button"
+                aria-label="뉴스레터 구독하기"
+            >
+                subscribe
+            </button>
+        </form>
+
+        <div
+            id="success-message"
+            class="success-message"
+            style="display: none;"
+            role="status"
+            aria-live="polite"
+        >
+            <span class="checkmark" aria-hidden="true">✓</span> 구독해주셔서 감사합니다!
+        </div>
     </div>
-
-    <h2 id="newsletter-title" class="newsletter-title">깊은 바다의 소식</h2>
-    <p class="newsletter-description">
-      새로운 글과 인사이트를 이메일로 받아보세요. 스팸은 없습니다.
-    </p>
-
-    <form id="newsletter-form" class="newsletter-form" aria-label="뉴스레터 구독 양식">
-      <div class="input-wrapper">
-        <span class="input-prompt" aria-hidden="true">→</span>
-        <label for="email" class="sr-only">이메일 주소</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="your@email.com"
-          required
-          class="email-input"
-          aria-required="true"
-          aria-describedby="newsletter-description"
-        />
-      </div>
-      <button type="submit" class="subscribe-button" aria-label="뉴스레터 구독하기">
-        subscribe
-      </button>
-    </form>
-
-    <div id="success-message" class="success-message" style="display: none;" role="status" aria-live="polite">
-      <span class="checkmark" aria-hidden="true">✓</span> 구독해주셔서 감사합니다!
-    </div>
-  </div>
 </section>
 
 <script>
-  const form = document.getElementById('newsletter-form') as HTMLFormElement;
-  const successMessage = document.getElementById('success-message');
+    const form = document.getElementById('newsletter-form') as HTMLFormElement
+    const successMessage = document.getElementById('success-message')
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault()
 
-    const formData = new FormData(form);
-    const email = formData.get('email');
+        const formData = new FormData(form)
+        const email = formData.get('email')
 
-    // TODO: Integrate with newsletter service (e.g., Resend, ConvertKit, etc.)
-    console.log('Newsletter subscription:', email);
+        // TODO: Integrate with newsletter service (e.g., Resend, ConvertKit, etc.)
+        console.log('Newsletter subscription:', email)
 
-    // Show success message
-    form.style.display = 'none';
-    if (successMessage) {
-      successMessage.style.display = 'flex';
-    }
-  });
+        // Show success message
+        form.style.display = 'none'
+        if (successMessage) {
+            successMessage.style.display = 'flex'
+        }
+    })
 </script>
 
 <style>
-  .newsletter {
-    padding: 4rem 0;
-    position: relative;
-    z-index: 10;
-  }
-
-  .newsletter-content {
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .jsdoc-comment {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1rem;
-    line-height: 1.6;
-  }
-
-  .newsletter-title {
-    font-size: 1.5rem;
-    color: var(--color-text-primary);
-    font-weight: 400;
-    margin-bottom: 0.75rem;
-  }
-
-  .newsletter-description {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 2rem;
-    font-weight: 300;
-  }
-
-  .newsletter-form {
-    display: flex;
-    gap: 0.75rem;
-    flex-direction: column;
-  }
-
-  .input-wrapper {
-    display: flex;
-    align-items: center;
-    background-color: var(--color-ocean-bg);
-    border: 1px solid var(--color-ocean-border);
-    border-radius: 6px;
-    padding: 0 1rem;
-    transition: border-color 0.2s ease;
-  }
-
-  .input-wrapper:focus-within {
-    border-color: var(--color-text-secondary);
-  }
-
-  .input-prompt {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin-right: 0.5rem;
-  }
-
-  .email-input {
-    flex: 1;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    padding: 0.75rem 0;
-    font-size: 0.875rem;
-    color: var(--color-text-primary);
-    font-family: inherit;
-  }
-
-  .email-input::placeholder {
-    color: var(--color-text-muted);
-  }
-
-  .subscribe-button {
-    background-color: var(--color-accent-green-dark);
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    font-family: inherit;
-  }
-
-  .subscribe-button:hover {
-    background-color: var(--color-accent-green-alt);
-  }
-
-  .success-message {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    background-color: var(--color-ocean-surface);
-    border: 1px solid var(--color-accent-green-dark);
-    border-radius: 6px;
-    color: var(--color-text-primary);
-    font-size: 0.875rem;
-  }
-
-  .checkmark {
-    color: var(--color-accent-green);
-    font-size: 1.25rem;
-  }
-
-  /* Screen reader only class */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-
-  @media (max-width: 768px) {
-    .newsletter-form {
-      gap: 0.5rem;
+    .newsletter {
+        padding: 4rem 0;
+        position: relative;
+        z-index: 10;
     }
-  }
+
+    .newsletter-content {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .jsdoc-comment {
+        font-size: 0.75rem;
+        color: var(--color-text-muted);
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    .newsletter-title {
+        font-size: 1.5rem;
+        color: var(--color-text-primary);
+        font-weight: 400;
+        margin-bottom: 0.75rem;
+    }
+
+    .newsletter-description {
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 2rem;
+        font-weight: 300;
+    }
+
+    .newsletter-form {
+        display: flex;
+        gap: 0.75rem;
+        flex-direction: column;
+    }
+
+    .input-wrapper {
+        display: flex;
+        align-items: center;
+        background-color: var(--color-ocean-bg);
+        border: 1px solid var(--color-ocean-border);
+        border-radius: 6px;
+        padding: 0 1rem;
+        transition: border-color 0.2s ease;
+    }
+
+    .input-wrapper:focus-within {
+        border-color: var(--color-text-secondary);
+    }
+
+    .input-prompt {
+        font-size: 0.875rem;
+        color: var(--color-text-muted);
+        margin-right: 0.5rem;
+    }
+
+    .email-input {
+        flex: 1;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        padding: 0.75rem 0;
+        font-size: 0.875rem;
+        color: var(--color-text-primary);
+        font-family: inherit;
+    }
+
+    .email-input::placeholder {
+        color: var(--color-text-muted);
+    }
+
+    .subscribe-button {
+        background-color: var(--color-accent-green-dark);
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        font-family: inherit;
+    }
+
+    .subscribe-button:hover {
+        background-color: var(--color-accent-green-alt);
+    }
+
+    .success-message {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        background-color: var(--color-ocean-surface);
+        border: 1px solid var(--color-accent-green-dark);
+        border-radius: 6px;
+        color: var(--color-text-primary);
+        font-size: 0.875rem;
+    }
+
+    .checkmark {
+        color: var(--color-accent-green);
+        font-size: 1.25rem;
+    }
+
+    /* Screen reader only class */
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+
+    @media (max-width: 768px) {
+        .newsletter-form {
+            gap: 0.5rem;
+        }
+    }
 </style>

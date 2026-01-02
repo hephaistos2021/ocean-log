@@ -1,5 +1,5 @@
 // robots.txt endpoint
-import type { APIRoute } from 'astro';
+import type { APIRoute } from 'astro'
 
 const robotsTxt = `
 # ocean-log robots.txt
@@ -16,14 +16,14 @@ Sitemap: https://ocean-log.dev/sitemap-index.xml
 
 # Crawl-delay (optional, adjust based on server capacity)
 # Crawl-delay: 10
-`.trim();
+`.trim()
 
 export const GET: APIRoute = () => {
-  return new Response(robotsTxt, {
-    status: 200,
-    headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
-      'Cache-Control': 'public, max-age=86400', // Cache for 1 day
-    },
-  });
-};
+    return new Response(robotsTxt, {
+        status: 200,
+        headers: {
+            'Content-Type': 'text/plain; charset=utf-8',
+            'Cache-Control': 'public, max-age=86400', // Cache for 1 day
+        },
+    })
+}

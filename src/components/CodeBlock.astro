@@ -1,41 +1,49 @@
 ---
 interface Props {
-  title?: string;
-  language?: string;
-  showLineNumbers?: boolean;
+    title?: string
+    language?: string
+    showLineNumbers?: boolean
 }
 
-const { title, language, showLineNumbers = false } = Astro.props;
+const { title, language, showLineNumbers = false } = Astro.props
 ---
 
-<div class="my-6 rounded-lg overflow-hidden border border-ocean-blue/30 bg-ocean-deep/50">
-  {title && (
-    <div class="px-4 py-2 bg-ocean-deep border-b border-ocean-blue/30 flex items-center justify-between">
-      <span class="text-ocean-text/70 font-mono text-sm">{title}</span>
-      {language && (
-        <span class="text-ocean-blue text-xs font-mono uppercase">{language}</span>
-      )}
+<div
+    class="my-6 rounded-lg overflow-hidden border border-ocean-blue/30 bg-ocean-deep/50"
+>
+    {
+        title && (
+            <div class="px-4 py-2 bg-ocean-deep border-b border-ocean-blue/30 flex items-center justify-between">
+                <span class="text-ocean-text/70 font-mono text-sm">
+                    {title}
+                </span>
+                {language && (
+                    <span class="text-ocean-blue text-xs font-mono uppercase">
+                        {language}
+                    </span>
+                )}
+            </div>
+        )
+    }
+    <div class="relative">
+        <div class={`overflow-x-auto ${showLineNumbers ? 'pl-12' : ''}`}>
+            <slot />
+        </div>
     </div>
-  )}
-  <div class="relative">
-    <div class={`overflow-x-auto ${showLineNumbers ? 'pl-12' : ''}`}>
-      <slot />
-    </div>
-  </div>
 </div>
 
 <style>
-  /* Override default code block styling to match terminal theme */
-  div :global(pre) {
-    margin: 0 !important;
-    padding: 1.5rem !important;
-    background: transparent !important;
-    border-radius: 0 !important;
-  }
+    /* Override default code block styling to match terminal theme */
+    div :global(pre) {
+        margin: 0 !important;
+        padding: 1.5rem !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+    }
 
-  div :global(code) {
-    font-family: 'JetBrains Mono', monospace !important;
-    font-size: 0.875rem !important;
-    line-height: 1.7 !important;
-  }
+    div :global(code) {
+        font-family: 'JetBrains Mono', monospace !important;
+        font-size: 0.875rem !important;
+        line-height: 1.7 !important;
+    }
 </style>

@@ -1,26 +1,27 @@
 ---
 // Blinking cursor component for terminal aesthetic
 interface Props {
-  visible?: boolean;
+    visible?: boolean
 }
 
-const { visible = true } = Astro.props;
+const { visible = true } = Astro.props
 ---
 
 {visible && <span class="blinking-cursor">_</span>}
 
 <style>
-  .blinking-cursor {
-    color: var(--color-accent-blue);
-    animation: blink 1.06s steps(1) infinite;
-  }
+    .blinking-cursor {
+        color: var(--color-accent-blue);
+        animation: blink 1.06s steps(1) infinite;
+    }
 
-  @keyframes blink {
-    0%, 100% {
-      opacity: 1;
+    @keyframes blink {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
     }
-    50% {
-      opacity: 0;
-    }
-  }
 </style>

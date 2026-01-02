@@ -1,350 +1,368 @@
 ---
 // Posts listing page
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
 
 // Get all posts
-const allPosts = await getCollection('posts');
+const allPosts = await getCollection('posts')
 
 // Filter out drafts in production and sort by date (newest first)
-const posts = (import.meta.env.PROD
-  ? allPosts.filter(post => !post.data.draft)
-  : allPosts
-).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const posts = (
+    import.meta.env.PROD
+        ? allPosts.filter((post) => !post.data.draft)
+        : allPosts
+).sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
 // Format date as YYYY-MM-DD
 const formatDate = (date: Date) => {
-  return date.toISOString().split('T')[0];
-};
+    return date.toISOString().split('T')[0]
+}
 
 // Calculate reading time
 const calculateReadingTime = (content: string) => {
-  const wordsPerMinute = 200;
-  const words = content.split(/\s+/).length;
-  const minutes = Math.ceil(words / wordsPerMinute);
-  return minutes;
-};
+    const wordsPerMinute = 200
+    const words = content.split(/\s+/).length
+    const minutes = Math.ceil(words / wordsPerMinute)
+    return minutes
+}
 ---
 
 <BaseLayout
-  title="posts"
-  description="개발 여정의 기록들, 코드 속에서 발견한 인사이트"
+    title="posts"
+    description="개발 여정의 기록들, 코드 속에서 발견한 인사이트"
 >
-  <div class="posts-page">
-    <!-- Header with terminal-style comment -->
-    <header class="posts-header">
-      <div class="terminal-comment">
-        <span class="comment-marker">/**</span>
-        <span class="comment-content">
-          * @path ~/ocean-log/posts
-        </span>
-        <span class="comment-content">
-          * @description 항해 일지
-        </span>
-        <span class="comment-marker"> */</span>
-      </div>
+    <div class="posts-page">
+        <!-- Header with terminal-style comment -->
+        <header class="posts-header">
+            <div class="terminal-comment">
+                <span class="comment-marker">/**</span>
+                <span class="comment-content"> * @path ~/ocean-log/posts </span>
+                <span class="comment-content"> * @description 항해 일지 </span>
+                <span class="comment-marker"> */</span>
+            </div>
 
-      <h1 class="posts-title">
-        $ ls -la ./posts<span class="cursor">_</span>
-      </h1>
+            <h1 class="posts-title">
+                $ ls -la ./posts<span class="cursor">_</span>
+            </h1>
 
-      <p class="posts-description">
-        // {posts.length} 개의 항해 기록
-      </p>
-    </header>
+            <p class="posts-description">
+                // {posts.length} 개의 항해 기록
+            </p>
+        </header>
 
-    <!-- Posts list with terminal style -->
-    <div class="posts-list">
-      {posts.map((post, index) => {
-        const readingTime = calculateReadingTime(post.body);
-        const postNumber = String(index + 1).padStart(2, '0');
+        <!-- Posts list with terminal style -->
+        <div class="posts-list">
+            {
+                posts.map((post, index) => {
+                    const readingTime = calculateReadingTime(post.body)
+                    const postNumber = String(index + 1).padStart(2, '0')
 
-        return (
-          <article class="post-item">
-            <a href={`/posts/${post.slug}`} class="post-link">
-              <!-- Post number -->
-              <span class="post-number">[{postNumber}]</span>
+                    return (
+                        <article class="post-item">
+                            <a href={`/posts/${post.slug}`} class="post-link">
+                                <span class="post-number">[{postNumber}]</span>
 
-              <!-- Post metadata -->
-              <div class="post-main">
-                <div class="post-header-line">
-                  <time datetime={post.data.date.toISOString()} class="post-date">
-                    {formatDate(post.data.date)}
-                  </time>
-                  <span class="post-reading-time">
-                    {readingTime} min
-                  </span>
+                                <div class="post-main">
+                                    <div class="post-header-line">
+                                        <time
+                                            datetime={post.data.date.toISOString()}
+                                            class="post-date"
+                                        >
+                                            {formatDate(post.data.date)}
+                                        </time>
+                                        <span class="post-reading-time">
+                                            {readingTime} min
+                                        </span>
+                                    </div>
+
+                                    <h2 class="post-title">
+                                        → {post.data.title}
+                                    </h2>
+
+                                    <p class="post-description">
+                                        {post.data.description}
+                                    </p>
+
+                                    {post.data.tags &&
+                                        post.data.tags.length > 0 && (
+                                            <div class="post-tags">
+                                                {post.data.tags.map((tag) => (
+                                                    <span class="tag">
+                                                        #{tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
+                                </div>
+                            </a>
+                        </article>
+                    )
+                })
+            }
+        </div>
+
+        {
+            posts.length === 0 && (
+                <div class="empty-state">
+                    <p class="empty-message">// no posts found</p>
+                    <p class="empty-hint">$ echo "coming soon..."</p>
                 </div>
-
-                <h2 class="post-title">
-                  → {post.data.title}
-                </h2>
-
-                <p class="post-description">
-                  {post.data.description}
-                </p>
-
-                {post.data.tags && post.data.tags.length > 0 && (
-                  <div class="post-tags">
-                    {post.data.tags.map((tag) => (
-                      <span class="tag">#{tag}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </a>
-          </article>
-        );
-      })}
+            )
+        }
     </div>
-
-    {posts.length === 0 && (
-      <div class="empty-state">
-        <p class="empty-message">// no posts found</p>
-        <p class="empty-hint">$ echo "coming soon..."</p>
-      </div>
-    )}
-  </div>
 </BaseLayout>
 
 <style>
-  .posts-page {
-    padding: 8rem 0 4rem;
-    animation: fadeInUp 0.6s ease-out;
-  }
-
-  /* Header */
-  .posts-header {
-    margin-bottom: 4rem;
-  }
-
-  .terminal-comment {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    margin-bottom: 1.5rem;
-    font-family: var(--font-family-mono);
-  }
-
-  .comment-marker {
-    color: var(--color-text-muted);
-  }
-
-  .comment-content {
-    color: var(--color-text-muted);
-    padding-left: 0.5rem;
-  }
-
-  .posts-title {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 400;
-    color: var(--color-text-primary);
-    margin-bottom: 0.75rem;
-    font-family: var(--font-family-mono);
-  }
-
-  .cursor {
-    color: var(--color-accent-green);
-    animation: blink 530ms infinite;
-  }
-
-  .posts-description {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    font-weight: 300;
-  }
-
-  /* Posts list */
-  .posts-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .post-item {
-    position: relative;
-    border-bottom: 1px solid var(--color-ocean-border-subtle);
-    transition: all 0.2s ease;
-    animation: fadeInUp 0.6s ease-out;
-    animation-fill-mode: both;
-  }
-
-  .post-item:nth-child(1) { animation-delay: 0.05s; }
-  .post-item:nth-child(2) { animation-delay: 0.1s; }
-  .post-item:nth-child(3) { animation-delay: 0.15s; }
-  .post-item:nth-child(4) { animation-delay: 0.2s; }
-  .post-item:nth-child(5) { animation-delay: 0.25s; }
-  .post-item:nth-child(n+6) { animation-delay: 0.3s; }
-
-  .post-item:hover {
-    background-color: var(--color-ocean-hover);
-    border-color: var(--color-ocean-border);
-  }
-
-  .post-item:last-child {
-    border-bottom: none;
-  }
-
-  .post-link {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1.5rem;
-    padding: 2rem 0;
-    text-decoration: none;
-    color: inherit;
-  }
-
-  /* Post number */
-  .post-number {
-    font-size: 0.875rem;
-    color: var(--color-accent-blue);
-    font-weight: 500;
-    font-family: var(--font-family-mono);
-    padding-top: 0.25rem;
-  }
-
-  /* Post main content */
-  .post-main {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .post-header-line {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 0.75rem;
-    font-family: var(--font-family-mono);
-  }
-
-  .post-date {
-    color: var(--color-text-muted);
-    font-weight: 300;
-  }
-
-  .post-reading-time {
-    color: var(--color-text-muted);
-    font-weight: 300;
-  }
-
-  .post-reading-time::before {
-    content: '•';
-    margin-right: 1rem;
-    color: var(--color-text-muted);
-  }
-
-  .post-title {
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--color-text-primary);
-    line-height: 1.4;
-    transition: color 0.2s ease;
-  }
-
-  .post-link:hover .post-title {
-    color: var(--color-accent-blue);
-  }
-
-  .post-description {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    font-size: 0.75rem;
-    color: var(--color-accent-green);
-    font-family: var(--font-family-mono);
-    font-weight: 400;
-  }
-
-  /* Empty state */
-  .empty-state {
-    text-align: center;
-    padding: 4rem 0;
-    color: var(--color-text-muted);
-  }
-
-  .empty-message {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .empty-hint {
-    font-size: 0.875rem;
-    color: var(--color-text-disabled);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
     .posts-page {
-      padding: 6rem 0 3rem;
+        padding: 8rem 0 4rem;
+        animation: fadeInUp 0.6s ease-out;
     }
 
+    /* Header */
     .posts-header {
-      margin-bottom: 3rem;
+        margin-bottom: 4rem;
+    }
+
+    .terminal-comment {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.75rem;
+        color: var(--color-text-muted);
+        margin-bottom: 1.5rem;
+        font-family: var(--font-family-mono);
+    }
+
+    .comment-marker {
+        color: var(--color-text-muted);
+    }
+
+    .comment-content {
+        color: var(--color-text-muted);
+        padding-left: 0.5rem;
     }
 
     .posts-title {
-      font-size: 1.5rem;
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 400;
+        color: var(--color-text-primary);
+        margin-bottom: 0.75rem;
+        font-family: var(--font-family-mono);
+    }
+
+    .cursor {
+        color: var(--color-accent-green);
+        animation: blink 530ms infinite;
+    }
+
+    .posts-description {
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+        font-weight: 300;
+    }
+
+    /* Posts list */
+    .posts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .post-item {
+        position: relative;
+        border-bottom: 1px solid var(--color-ocean-border-subtle);
+        transition: all 0.2s ease;
+        animation: fadeInUp 0.6s ease-out;
+        animation-fill-mode: both;
+    }
+
+    .post-item:nth-child(1) {
+        animation-delay: 0.05s;
+    }
+    .post-item:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+    .post-item:nth-child(3) {
+        animation-delay: 0.15s;
+    }
+    .post-item:nth-child(4) {
+        animation-delay: 0.2s;
+    }
+    .post-item:nth-child(5) {
+        animation-delay: 0.25s;
+    }
+    .post-item:nth-child(n + 6) {
+        animation-delay: 0.3s;
+    }
+
+    .post-item:hover {
+        background-color: var(--color-ocean-hover);
+        border-color: var(--color-ocean-border);
+    }
+
+    .post-item:last-child {
+        border-bottom: none;
     }
 
     .post-link {
-      grid-template-columns: auto 1fr;
-      gap: 1rem;
-      padding: 1.5rem 0;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1.5rem;
+        padding: 2rem 0;
+        text-decoration: none;
+        color: inherit;
     }
 
+    /* Post number */
     .post-number {
-      font-size: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--color-accent-blue);
+        font-weight: 500;
+        font-family: var(--font-family-mono);
+        padding-top: 0.25rem;
     }
 
-    .post-title {
-      font-size: 1.125rem;
-    }
-
-    .post-description {
-      font-size: 0.8125rem;
+    /* Post main content */
+    .post-main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
     }
 
     .post-header-line {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.25rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.75rem;
+        font-family: var(--font-family-mono);
+    }
+
+    .post-date {
+        color: var(--color-text-muted);
+        font-weight: 300;
+    }
+
+    .post-reading-time {
+        color: var(--color-text-muted);
+        font-weight: 300;
     }
 
     .post-reading-time::before {
-      content: '';
-      margin-right: 0;
+        content: '•';
+        margin-right: 1rem;
+        color: var(--color-text-muted);
     }
-  }
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
+    .post-title {
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: var(--color-text-primary);
+        line-height: 1.4;
+        transition: color 0.2s ease;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
-  @keyframes blink {
-    0%, 100% {
-      opacity: 1;
+    .post-link:hover .post-title {
+        color: var(--color-accent-blue);
     }
-    50% {
-      opacity: 0;
+
+    .post-description {
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        font-weight: 300;
     }
-  }
+
+    .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        font-size: 0.75rem;
+        color: var(--color-accent-green);
+        font-family: var(--font-family-mono);
+        font-weight: 400;
+    }
+
+    /* Empty state */
+    .empty-state {
+        text-align: center;
+        padding: 4rem 0;
+        color: var(--color-text-muted);
+    }
+
+    .empty-message {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .empty-hint {
+        font-size: 0.875rem;
+        color: var(--color-text-disabled);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .posts-page {
+            padding: 6rem 0 3rem;
+        }
+
+        .posts-header {
+            margin-bottom: 3rem;
+        }
+
+        .posts-title {
+            font-size: 1.5rem;
+        }
+
+        .post-link {
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            padding: 1.5rem 0;
+        }
+
+        .post-number {
+            font-size: 0.75rem;
+        }
+
+        .post-title {
+            font-size: 1.125rem;
+        }
+
+        .post-description {
+            font-size: 0.8125rem;
+        }
+
+        .post-header-line {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+        }
+
+        .post-reading-time::before {
+            content: '';
+            margin-right: 0;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes blink {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+    }
 </style>

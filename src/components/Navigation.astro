@@ -3,140 +3,139 @@
 ---
 
 <nav id="main-nav" class="nav" aria-label="메인 네비게이션">
-  <div class="nav-container">
-    <a href="/" class="nav-logo" aria-label="홈으로 이동">~/ocean-log</a>
+    <div class="nav-container">
+        <a href="/" class="nav-logo" aria-label="홈으로 이동">~/ocean-log</a>
 
-    <div class="nav-links">
-      <a href="/posts" class="nav-link" aria-label="포스트 페이지 (단축키: P)">
-        posts <kbd aria-hidden="true">p</kbd>
-      </a>
-      <a href="/about" class="nav-link" aria-label="소개 페이지 (단축키: A)">
-        about <kbd aria-hidden="true">a</kbd>
-      </a>
-      <a href="/rss.xml" class="nav-link" aria-label="RSS 피드 (단축키: R)">
-        rss <kbd aria-hidden="true">r</kbd>
-      </a>
+        <div class="nav-links">
+            <a
+                href="/posts"
+                class="nav-link"
+                aria-label="포스트 페이지 (단축키: P)"
+            >
+                posts <kbd aria-hidden="true">p</kbd>
+            </a>
+            <a
+                href="/about"
+                class="nav-link"
+                aria-label="소개 페이지 (단축키: A)"
+            >
+                about <kbd aria-hidden="true">a</kbd>
+            </a>
+            <a
+                href="/rss.xml"
+                class="nav-link"
+                aria-label="RSS 피드 (단축키: R)"
+            >
+                rss <kbd aria-hidden="true">r</kbd>
+            </a>
+        </div>
     </div>
-  </div>
 </nav>
 
 <script>
-  const nav = document.getElementById('main-nav');
-  let lastScroll = 0;
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        // Only trigger if not in an input/textarea
+        if (
+            e.target instanceof HTMLInputElement ||
+            e.target instanceof HTMLTextAreaElement
+        ) {
+            return
+        }
 
-  // Scroll detection
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > 50) {
-      nav?.classList.add('scrolled');
-    } else {
-      nav?.classList.remove('scrolled');
-    }
-
-    lastScroll = currentScroll;
-  });
-
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    // Only trigger if not in an input/textarea
-    if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
-      return;
-    }
-
-    switch (e.key.toLowerCase()) {
-      case 'p':
-        e.preventDefault();
-        window.location.href = '/posts';
-        break;
-      case 'a':
-        e.preventDefault();
-        window.location.href = '/about';
-        break;
-      case 'r':
-        e.preventDefault();
-        window.location.href = '/rss.xml';
-        break;
-      case 'h':
-        e.preventDefault();
-        window.location.href = '/';
-        break;
-    }
-  });
+        switch (e.key.toLowerCase()) {
+            case 'p':
+                e.preventDefault()
+                window.location.href = '/posts'
+                break
+            case 'a':
+                e.preventDefault()
+                window.location.href = '/about'
+                break
+            case 'r':
+                e.preventDefault()
+                window.location.href = '/rss.xml'
+                break
+            case 'h':
+                e.preventDefault()
+                window.location.href = '/'
+                break
+        }
+    })
 </script>
 
 <style>
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    transition: all 0.4s ease;
-  }
+    .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        transition: all 0.4s ease;
+    }
 
-  .nav-container {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 1.25rem 2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-logo {
-    font-size: 0.875rem;
-    color: var(--color-text-primary);
-    text-decoration: none;
-    font-weight: 400;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  .nav-link {
-    font-size: 0.875rem;
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    transition: color 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .nav-link:hover {
-    color: var(--color-text-primary);
-  }
-
-  kbd {
-    font-size: 0.625rem;
-    color: var(--color-text-muted);
-    border: 1px solid var(--color-ocean-border);
-    border-radius: 3px;
-    padding: 0.125rem 0.375rem;
-    font-family: inherit;
-  }
-
-  .nav.scrolled {
-    background-color: rgba(13, 17, 23, 0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--color-ocean-border-subtle);
-  }
-
-  @media (max-width: 768px) {
     .nav-container {
-      padding: 1rem 1.5rem;
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 1.25rem 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-logo {
+        font-size: 0.875rem;
+        color: var(--color-text-primary);
+        text-decoration: none;
+        font-weight: 400;
     }
 
     .nav-links {
-      gap: 1rem;
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-link {
+        font-size: 0.875rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        transition: color 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .nav-link:hover {
+        color: var(--color-text-primary);
     }
 
     kbd {
-      display: none;
+        font-size: 0.625rem;
+        color: var(--color-text-muted);
+        border: 1px solid var(--color-ocean-border);
+        border-radius: 3px;
+        padding: 0.125rem 0.375rem;
+        font-family: inherit;
     }
-  }
+
+    .nav.scrolled {
+        background-color: rgba(13, 17, 23, 0.9);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--color-ocean-border-subtle);
+    }
+
+    @media (max-width: 768px) {
+        .nav-container {
+            padding: 1rem 1.5rem;
+        }
+
+        .nav-links {
+            gap: 1rem;
+        }
+
+        kbd {
+            display: none;
+        }
+    }
 </style>

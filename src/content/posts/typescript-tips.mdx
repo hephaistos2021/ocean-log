@@ -1,8 +1,8 @@
 ---
-title: "TypeScript 실전 팁 5가지"
-description: "실무에서 바로 쓸 수 있는 TypeScript 활용법"
+title: 'TypeScript 실전 팁 5가지'
+description: '실무에서 바로 쓸 수 있는 TypeScript 활용법'
 date: 2024-01-25
-tags: ["typescript", "tips", "개발"]
+tags: ['typescript', 'tips', '개발']
 draft: false
 ---
 
@@ -16,23 +16,23 @@ TypeScript는 강력한 내장 유틸리티 타입들을 제공합니다:
 
 ```typescript
 interface User {
-  id: string;
-  name: string;
-  email: string;
-  age: number;
+    id: string
+    name: string
+    email: string
+    age: number
 }
 
 // 일부만 선택
-type UserPreview = Pick<User, 'id' | 'name'>;
+type UserPreview = Pick<User, 'id' | 'name'>
 
 // 일부 제외
-type UserWithoutAge = Omit<User, 'age'>;
+type UserWithoutAge = Omit<User, 'age'>
 
 // 모두 선택적으로
-type PartialUser = Partial<User>;
+type PartialUser = Partial<User>
 
 // 모두 필수로
-type RequiredUser = Required<User>;
+type RequiredUser = Required<User>
 ```
 
 ### 2. Type Guards로 안전하게
@@ -41,14 +41,14 @@ type RequiredUser = Required<User>;
 
 ```typescript
 function isString(value: unknown): value is string {
-  return typeof value === 'string';
+    return typeof value === 'string'
 }
 
 function processValue(value: unknown) {
-  if (isString(value)) {
-    // 여기서 value는 string 타입으로 좁혀짐
-    console.log(value.toUpperCase());
-  }
+    if (isString(value)) {
+        // 여기서 value는 string 타입으로 좁혀짐
+        console.log(value.toUpperCase())
+    }
 }
 ```
 
@@ -58,11 +58,11 @@ function processValue(value: unknown) {
 
 ```typescript
 interface HasId {
-  id: string;
+    id: string
 }
 
 function findById<T extends HasId>(items: T[], id: string): T | undefined {
-  return items.find(item => item.id === id);
+    return items.find((item) => item.id === id)
 }
 ```
 
@@ -72,30 +72,30 @@ function findById<T extends HasId>(items: T[], id: string): T | undefined {
 
 ```typescript
 type LoadingState = {
-  status: 'loading';
-};
+    status: 'loading'
+}
 
 type SuccessState<T> = {
-  status: 'success';
-  data: T;
-};
+    status: 'success'
+    data: T
+}
 
 type ErrorState = {
-  status: 'error';
-  error: Error;
-};
+    status: 'error'
+    error: Error
+}
 
-type AsyncState<T> = LoadingState | SuccessState<T> | ErrorState;
+type AsyncState<T> = LoadingState | SuccessState<T> | ErrorState
 
 function handleState<T>(state: AsyncState<T>) {
-  switch (state.status) {
-    case 'loading':
-      return 'Loading...';
-    case 'success':
-      return state.data; // data 접근 가능
-    case 'error':
-      return state.error.message; // error 접근 가능
-  }
+    switch (state.status) {
+        case 'loading':
+            return 'Loading...'
+        case 'success':
+            return state.data // data 접근 가능
+        case 'error':
+            return state.error.message // error 접근 가능
+    }
 }
 ```
 
@@ -105,12 +105,12 @@ function handleState<T>(state: AsyncState<T>) {
 
 ```typescript
 const routes = [
-  { path: '/', name: 'home' },
-  { path: '/about', name: 'about' },
-] as const;
+    { path: '/', name: 'home' },
+    { path: '/about', name: 'about' },
+] as const
 
 // routes의 타입이 readonly로 고정됨
-type Route = typeof routes[number]; // { path: string; name: string }
+type Route = (typeof routes)[number] // { path: string; name: string }
 ```
 
 ## 마치며
