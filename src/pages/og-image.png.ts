@@ -80,7 +80,7 @@ export const GET: APIRoute = async () => {
     const pngData = resvg.render()
     const pngBuffer = pngData.asPng()
 
-    return new Response(pngBuffer, {
+    return new Response(pngBuffer as unknown as BodyInit, {
         status: 200,
         headers: {
             'Content-Type': 'image/png',

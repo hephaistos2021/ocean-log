@@ -1,6 +1,5 @@
 ---
 // Base layout for all pages
-import { ViewTransitions } from 'astro:transitions'
 import WaveBackground from '../components/WaveBackground.astro'
 import FloatingParticles from '../components/FloatingParticles.astro'
 import Navigation from '../components/Navigation.astro'
@@ -29,6 +28,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content={description} />
+
         <meta name="generator" content={Astro.generator} />
 
         <!-- Canonical URL -->
@@ -66,21 +66,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
             type="font/woff2"
             crossorigin
         />
-
         <title>{fullTitle}</title>
-
-        <!-- View Transitions -->
-        <ViewTransitions />
     </head>
     <body>
-        <!-- Background effects -->
         <WaveBackground />
         <FloatingParticles />
-
-        <!-- Navigation -->
         <Navigation />
-
-        <!-- Main content -->
         <main>
             <slot />
         </main>
