@@ -1,10 +1,11 @@
 // Dynamic OG Image Generation
 // This endpoint generates a PNG Open Graph image
-import type { APIRoute } from 'astro'
-import { Resvg } from '@resvg/resvg-js'
+
+import { Resvg } from "@resvg/resvg-js";
+import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
-    const svg = `
+	const svg = `
     <svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -67,24 +68,24 @@ export const GET: APIRoute = async () => {
         Developer Blog • TypeScript • Astro • Web Performance
       </text>
     </svg>
-  `
+  `;
 
-    // Convert SVG to PNG using resvg
-    const resvg = new Resvg(svg, {
-        fitTo: {
-            mode: 'width',
-            value: 1200,
-        },
-    })
+	// Convert SVG to PNG using resvg
+	const resvg = new Resvg(svg, {
+		fitTo: {
+			mode: "width",
+			value: 1200,
+		},
+	});
 
-    const pngData = resvg.render()
-    const pngBuffer = pngData.asPng()
+	const pngData = resvg.render();
+	const pngBuffer = pngData.asPng();
 
-    return new Response(pngBuffer as unknown as BodyInit, {
-        status: 200,
-        headers: {
-            'Content-Type': 'image/png',
-            'Cache-Control': 'public, max-age=31536000, immutable',
-        },
-    })
-}
+	return new Response(pngBuffer as unknown as BodyInit, {
+		status: 200,
+		headers: {
+			"Content-Type": "image/png",
+			"Cache-Control": "public, max-age=31536000, immutable",
+		},
+	});
+};

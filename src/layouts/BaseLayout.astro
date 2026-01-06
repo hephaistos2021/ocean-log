@@ -1,25 +1,25 @@
 ---
+import FloatingParticles from "../components/FloatingParticles.astro";
+import Footer from "../components/Footer.astro";
+import Navigation from "../components/Navigation.astro";
 // Base layout for all pages
-import WaveBackground from '../components/WaveBackground.astro'
-import FloatingParticles from '../components/FloatingParticles.astro'
-import Navigation from '../components/Navigation.astro'
-import Footer from '../components/Footer.astro'
-import '../styles/global.css'
+import WaveBackground from "../components/WaveBackground.astro";
+import "../styles/global.css";
 
 interface Props {
-    title?: string
-    description?: string
-    image?: string
+	title?: string;
+	description?: string;
+	image?: string;
 }
 
 const {
-    title = 'ocean-log',
-    description = '개발자의 깊은 바다 항해 일지',
-    image = '/og-image.png',
-} = Astro.props
+	title = "ocean-log",
+	description = "개발자의 깊은 바다 항해 일지",
+	image = "/og-image.png",
+} = Astro.props;
 
-const fullTitle = title === 'ocean-log' ? title : `${title} | ocean-log`
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const fullTitle = title === "ocean-log" ? title : `${title} | ocean-log`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>

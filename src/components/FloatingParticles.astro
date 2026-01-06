@@ -1,15 +1,15 @@
 ---
 // Floating particles for atmospheric effect
 const particles = Array.from({ length: 15 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 2 + 1, // 1-3px
-    left: Math.random() * 100, // 0-100%
-    top: Math.random() * 100, // 0-100%
-    opacity: Math.random() * 0.3 + 0.1, // 0.1-0.4
-    delay: Math.random() * 12, // 0-12s
-    duration: Math.random() * 12 + 18, // 18-30s
-    color: i % 2 === 0 ? '#58a6ff' : '#7ee787', // Alternate blue/green
-}))
+	id: i,
+	size: Math.random() * 2 + 1, // 1-3px
+	left: Math.random() * 100, // 0-100%
+	top: Math.random() * 100, // 0-100%
+	opacity: Math.random() * 0.3 + 0.1, // 0.1-0.4
+	delay: Math.random() * 12, // 0-12s
+	duration: Math.random() * 12 + 18, // 18-30s
+	color: i % 2 === 0 ? "#58a6ff" : "#7ee787", // Alternate blue/green
+}));
 ---
 
 <div class="floating-particles" aria-hidden="true">

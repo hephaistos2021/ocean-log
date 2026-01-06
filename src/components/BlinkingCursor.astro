@@ -1,10 +1,10 @@
 ---
 // Blinking cursor component for terminal aesthetic
 interface Props {
-    visible?: boolean
+	visible?: boolean;
 }
 
-const { visible = true } = Astro.props
+const { visible = true } = Astro.props;
 ---
 
 {visible && <span class="blinking-cursor">_</span>}

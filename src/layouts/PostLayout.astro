@@ -1,22 +1,22 @@
 ---
 // Layout for blog posts
-import BaseLayout from './BaseLayout.astro'
+import BaseLayout from "./BaseLayout.astro";
 
 interface Props {
-    title: string
-    description: string
-    date: Date
-    tags?: string[]
-    readingTime?: string
-    image?: string
+	title: string;
+	description: string;
+	date: Date;
+	tags?: string[];
+	readingTime?: string;
+	image?: string;
 }
 
-const { title, description, date, tags = [], readingTime, image } = Astro.props
+const { title, description, date, tags = [], readingTime, image } = Astro.props;
 
 // Format date as YYYY-MM-DD
 const formatDate = (date: Date) => {
-    return date.toISOString().split('T')[0]
-}
+	return date.toISOString().split("T")[0];
+};
 ---
 
 <BaseLayout title={title} description={description} image={image}>

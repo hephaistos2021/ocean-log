@@ -1,26 +1,26 @@
 ---
 // Post list component with terminal style
-import { getCollection } from 'astro:content'
-import TerminalWindow from './TerminalWindow.astro'
+import { getCollection } from "astro:content";
+import TerminalWindow from "./TerminalWindow.astro";
 
 interface Props {
-    limit?: number
+	limit?: number;
 }
 
-const { limit } = Astro.props
+const { limit } = Astro.props;
 
 // Get all posts, sorted by date (newest first)
-const allPosts = await getCollection('posts')
+const allPosts = await getCollection("posts");
 const sortedPosts = allPosts
-    .filter((post) => !post.data.draft)
-    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+	.filter((post) => !post.data.draft)
+	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const posts = limit ? sortedPosts.slice(0, limit) : sortedPosts
+const posts = limit ? sortedPosts.slice(0, limit) : sortedPosts;
 
 // Format date as YYYY-MM-DD
 const formatDate = (date: Date) => {
-    return date.toISOString().split('T')[0]
-}
+	return date.toISOString().split("T")[0];
+};
 ---
 
 <section class="post-list-section">
