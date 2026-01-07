@@ -69,8 +69,7 @@ Build a personal developer blog called "ocean-log" using Astro and Tailwind CSS.
   │   ├── index.astro
   │   ├── posts/
   │   │   └── [...slug].astro
-  │   ├── about.astro
-  │   └── rss.xml.js
+  │   └── about.astro
   ├── content/
   │   └── posts/
   │       └── (MDX files)
@@ -107,7 +106,6 @@ Build a personal developer blog called "ocean-log" using Astro and Tailwind CSS.
 - [x] Right side: links with keyboard hints
   - posts [p]
   - about [a]
-  - rss [r]
 - [x] Scroll detection: add backdrop blur + border when scrolled
 - [x] Use `<script>` tag for scroll listener (vanilla JS)
 - [x] Transitions: all 0.4s ease
@@ -199,11 +197,6 @@ Build a personal developer blog called "ocean-log" using Astro and Tailwind CSS.
 - [x] Skills/interests as tags
 - [x] Social links
 
-### 4.4 rss.xml.js
-- [x] Generate RSS feed from posts
-- [x] Include title, description, items
-- [x] Install @astrojs/rss package
-
 ---
 
 ## Phase 5: Content Setup
@@ -234,7 +227,7 @@ Build a personal developer blog called "ocean-log" using Astro and Tailwind CSS.
 - [ ] Minimize CSS/JS (handled by Astro build)
 
 ### 6.3 Accessibility
-- [x] Keyboard navigation support (p, a, r, h shortcuts)
+- [x] Keyboard navigation support (p, a, h shortcuts)
 - [x] Focus styles (visible focus indicators)
 - [x] Screen reader friendly labels (ARIA labels, sr-only class)
 - [x] Color contrast check (improved muted text to WCAG AA compliance)
