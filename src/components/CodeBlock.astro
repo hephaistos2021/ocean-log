@@ -9,16 +9,16 @@ const { title, language, showLineNumbers = false } = Astro.props;
 ---
 
 <div
-    class="my-6 rounded-lg overflow-hidden border border-ocean-blue/30 bg-ocean-deep/50"
+    class="my-6 rounded-lg overflow-hidden border border-ocean-border bg-ocean-surface"
 >
     {
         title && (
-            <div class="px-4 py-2 bg-ocean-deep border-b border-ocean-blue/30 flex items-center justify-between">
-                <span class="text-ocean-text/70 font-mono text-sm">
+            <div class="px-4 py-2 bg-ocean-bg border-b border-ocean-border flex items-center justify-between">
+                <span class="text-text-muted font-mono text-sm">
                     {title}
                 </span>
                 {language && (
-                    <span class="text-ocean-blue text-xs font-mono uppercase">
+                    <span class="text-accent-blue text-xs font-mono uppercase">
                         {language}
                     </span>
                 )}

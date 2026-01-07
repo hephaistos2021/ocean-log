@@ -6,26 +6,26 @@ import BlinkingCursor from "./BlinkingCursor.astro";
 <section class="hero" aria-label="메인 히어로 섹션">
     <div class="hero-content">
         <p
-            class="comment fade-in-up"
+            class="comment slide-in-up"
             style="animation-delay: 0.1s;"
             aria-hidden="true"
         >
             // a developer's journey
         </p>
 
-        <h1 class="hero-title fade-in-up" style="animation-delay: 0.2s;">
+        <h1 class="hero-title slide-in-up" style="animation-delay: 0.2s;">
             <span class="ocean">ocean</span><span class="dash">-</span><span
                 class="log">log</span
             ><span aria-hidden="true"><BlinkingCursor /></span>
         </h1>
 
-        <p class="subtitle fade-in-up" style="animation-delay: 0.3s;">
+        <p class="subtitle slide-in-up" style="animation-delay: 0.3s;">
             개발자의 깊은 바다 항해 일지
         </p>
 
         <a
             href="/posts"
-            class="cta-button fade-in-up"
+            class="cta-button slide-in-up"
             style="animation-delay: 0.4s;"
             aria-label="블로그 포스트 보기"
         >
@@ -115,30 +115,36 @@ import BlinkingCursor from "./BlinkingCursor.astro";
         font-size: 0.75rem;
         color: var(--color-text-muted);
         text-align: center;
-        opacity: 0;
-        animation: fadeInUpCentered 0.8s ease 0.5s forwards, bounce 2s infinite 1.3s;
+        transform: translateX(-50%) translateY(20px);
+        visibility: hidden;
+        animation: slideInUpCentered 0.8s ease 0.5s forwards, bounce 2s infinite 1.3s;
     }
 
 
-    @keyframes fadeInUp {
+    .slide-in-up {
+        visibility: hidden;
+        animation: slideInUp 0.6s ease forwards;
+    }
+
+    @keyframes slideInUp {
         from {
-            opacity: 0;
             transform: translateY(20px);
+            visibility: hidden;
         }
         to {
-            opacity: 1;
             transform: translateY(0);
+            visibility: visible;
         }
     }
 
-    @keyframes fadeInUpCentered {
+    @keyframes slideInUpCentered {
         from {
-            opacity: 0;
             transform: translateX(-50%) translateY(20px);
+            visibility: hidden;
         }
         to {
-            opacity: 1;
             transform: translateX(-50%) translateY(0);
+            visibility: visible;
         }
     }
 

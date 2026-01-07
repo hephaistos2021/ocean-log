@@ -112,30 +112,20 @@
 	}
 }
 
-@keyframes fadeInUp {
-	from {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-
 @keyframes blink {
 	0%,
-	100% {
-		opacity: 1;
+	49% {
+		visibility: visible;
 	}
-	50% {
-		opacity: 0;
+	50%,
+	100% {
+		visibility: hidden;
 	}
 }
 
 @layer base {
 	* {
-		@apply border-border outline-ring/50;
+		@apply border-border outline-ring;
 	}
 	body {
 		@apply bg-ocean-bg text-text-primary;
@@ -217,12 +207,12 @@
 
 		/* Paragraphs and text */
 		p {
-			@apply my-4 leading-relaxed text-text-primary/90;
+			@apply my-4 leading-relaxed text-text-secondary;
 		}
 
 		/* Links */
 		a {
-			@apply text-accent-blue underline decoration-accent-blue/30 hover:decoration-accent-blue transition-colors;
+			@apply text-accent-blue underline decoration-ocean-border hover:decoration-accent-blue transition-colors;
 			text-underline-offset: 2px;
 		}
 
@@ -254,7 +244,7 @@
 		}
 
 		li {
-			@apply text-text-primary/90 leading-relaxed;
+			@apply text-text-secondary leading-relaxed;
 		}
 
 		li::marker {
@@ -275,7 +265,7 @@
 
 		/* Code blocks */
 		pre {
-			@apply my-6 rounded-lg border border-ocean-border bg-ocean-surface/50 overflow-x-auto;
+			@apply my-6 rounded-lg border border-ocean-border bg-ocean-surface overflow-x-auto;
 			padding: 1.5rem;
 		}
 
@@ -287,7 +277,7 @@
 
 		/* Blockquotes */
 		blockquote {
-			@apply my-6 border-l-4 border-accent-blue bg-ocean-surface/30 pl-4 pr-4 py-3 italic;
+			@apply my-6 border-l-4 border-accent-blue bg-ocean-border-subtle pl-4 pr-4 py-3 italic;
 		}
 
 		blockquote p {

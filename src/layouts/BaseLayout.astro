@@ -1,9 +1,7 @@
 ---
-import FloatingParticles from "../components/FloatingParticles.astro";
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Navigation.astro";
 // Base layout for all pages
-import WaveBackground from "../components/WaveBackground.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -69,8 +67,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <title>{fullTitle}</title>
     </head>
     <body>
-        <WaveBackground />
-        <FloatingParticles />
         <Navigation />
         <main>
             <slot />

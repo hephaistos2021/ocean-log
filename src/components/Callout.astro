@@ -8,28 +8,28 @@ const { type = "info", title } = Astro.props;
 
 const typeStyles = {
 	info: {
-		border: "border-ocean-blue",
-		bg: "bg-ocean-blue/10",
+		border: "border-accent-blue",
+		bg: "bg-ocean-border-subtle",
 		icon: "ℹ",
-		titleColor: "text-ocean-blue",
+		titleColor: "text-accent-blue",
 	},
 	warning: {
 		border: "border-yellow-400",
-		bg: "bg-yellow-400/10",
+		bg: "bg-ocean-border-subtle",
 		icon: "⚠",
 		titleColor: "text-yellow-400",
 	},
 	error: {
 		border: "border-red-400",
-		bg: "bg-red-400/10",
+		bg: "bg-ocean-border-subtle",
 		icon: "✕",
 		titleColor: "text-red-400",
 	},
 	success: {
-		border: "border-ocean-green",
-		bg: "bg-ocean-green/10",
+		border: "border-accent-green",
+		bg: "bg-ocean-border-subtle",
 		icon: "✓",
-		titleColor: "text-ocean-green",
+		titleColor: "text-accent-green",
 	},
 };
 
@@ -49,7 +49,7 @@ const style = typeStyles[type];
             </div>
         )
     }
-    <div class="text-ocean-text/90 leading-relaxed">
+    <div class="text-text-secondary leading-relaxed">
         <slot />
     </div>
 </div>
